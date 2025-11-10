@@ -1,0 +1,92 @@
+# ========================
+# Maven / Gradle build
+# ========================
+**/target/
+**/build/
+.gradle/
+release.properties
+
+# Ignore child .mvn folders (but keep root .mvn/)
+**/.mvn/
+
+# Keep mvnw / mvnw.cmd in root (do NOT ignore)
+# Keep .gitignore and .gitattributes in root
+
+# ========================
+# IDE files
+# ========================
+# VS Code
+.vscode/
+.history/
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Eclipse / STS
+.classpath
+.project
+.settings/
+.apt_generated
+.factorypath
+.springBeans
+.sts4-cache
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# ========================
+# Logs
+# ========================
+*.log
+logs/
+
+# ========================
+# Spring Boot DevTools
+# ========================
+.restart/
+
+# ========================
+# Environment / secrets
+# ========================
+.env
+*.env
+
+# ========================
+# Docker / Kubernetes
+# ========================
+**/Dockerfile
+**/docker-compose*.yml
+**/docker-compose*.yaml
+**/docker-compose.override.yml
+**/docker-compose.override.yaml
+
+**/k8s/
+**/*.k8s.yaml
+**/*.k8s.yml
+**/*.kube.yaml
+**/*.kube.yml
+
+# ========================
+# OS / temporary files
+# ========================
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+*.bak
+*.orig
+*.rej
+
+# ========================
+# Node / frontend (if any)
+# ========================
+node_modules/
+dist/
+build/
