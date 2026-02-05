@@ -21,11 +21,15 @@
 		<module>config-server</module>
 		<module>discovery-server</module>
 		<module>api-gateway</module>
+		<module>user-service</module>
 	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     	<maven.compiler.release>17</maven.compiler.release>
+		<micrometer.version>1.11.4</micrometer.version>
+		<mapstruct.version>1.6.3</mapstruct.version>
+		<lombok.version>1.18.38</lombok.version>
 	</properties>
 
 	<dependencies>
@@ -39,13 +43,6 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-		</dependency>
-
-		<!-- Lombok -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<scope>provided</scope>
 		</dependency>
 
 		<!-- Spring Boot Test -->
@@ -62,6 +59,7 @@
 			<dependency>
 				<groupId>io.micrometer</groupId>
 				<artifactId>micrometer-registry-prometheus</artifactId>
+				<version>${micrometer.version}</version>
 			</dependency>
 
 			<!-- Circuit Breaker -->
@@ -75,6 +73,21 @@
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-starter-openfeign</artifactId>
 			</dependency>
+
+			<!-- Map structuct -->
+			<dependency>
+        		<groupId>org.mapstruct</groupId>
+        		<artifactId>mapstruct</artifactId>
+        		<version>${mapstruct.version}</version>
+    		</dependency>
+    		
+			<!-- Lombok -->
+			<dependency>
+        		<groupId>org.projectlombok</groupId>
+        		<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+				<scope>provided</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -86,6 +99,36 @@
           			<artifactId>spring-boot-maven-plugin</artifactId>
           			<version>3.2.0</version>
         		</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.11.0</version>
+					<configuration>
+						<release>17</release>
+						<annotationProcessorPaths>
+							<!-- Lombok -->
+							<path>
+								<groupId>org.projectlombok</groupId>
+								<artifactId>lombok</artifactId>
+								<version>1.18.38</version>
+							</path>
+
+							<!-- MapStruct -->
+							<path>
+								<groupId>org.mapstruct</groupId>
+								<artifactId>mapstruct-processor</artifactId>
+								<version>1.6.3</version>
+							</path>
+
+							<!-- Bridge to ensure Lombok and MapStruct play nicely -->
+							<path>
+								<groupId>org.projectlombok</groupId>
+								<artifactId>lombok-mapstruct-binding</artifactId>
+								<version>0.2.0</version>
+							</path>
+						</annotationProcessorPaths>
+					</configuration>
+				</plugin>
       		</plugins>
     	</pluginManagement>
   	</build>
